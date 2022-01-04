@@ -5,7 +5,13 @@ import java.util.Date;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
-@Entity
+
+@Entity(name="Customer")
+@Table(name="Customer",
+        uniqueConstraints = {
+        @UniqueConstraint(name="student_email_unique", columnNames="email")
+        }
+)
 public class Customer {
 
     @Id
@@ -13,15 +19,45 @@ public class Customer {
             sequenceName = "customer_sequence",
             allocationSize=1)
     @GeneratedValue(strategy=SEQUENCE,generator = "customer_sequence")
-
+    @Column(
+            name="id",
+            updatable=false
+    )
     private Long id;
-    private String firstname;
-    private String lastname;
-    private String email;
-    private Date dateOfBirth;
 
-    public Customer(Long id, String firstname, String lastname, String email, Date dateOfBirth) {
-        this.id = id;
+    @Column(
+            name="first_name",
+            nullable=false,
+            columnDefinition = "TEXT"
+    )
+    private String firstname;
+
+    @Column(
+            name="last_name",
+            nullable=false,
+            columnDefinition = "TEXT"
+    )
+    private String lastname;
+
+    @Column(
+            name="email",
+            nullable=false,
+            columnDefinition = "TEXT"
+    )
+    private String email;
+
+    @Column(
+            name="dob",
+            nullable=false,
+            columnDefinition = "TEXT",
+            updatable = false
+    )
+    private String dateOfBirth;
+
+    public Customer() {
+    }
+
+    public Customer( String firstname, String lastname, String email, String dateOfBirth) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -60,11 +96,11 @@ public class Customer {
         this.email = email;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
