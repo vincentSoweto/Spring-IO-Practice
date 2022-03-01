@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymleaf.org">
-<head>
+<html lang="en">
+<head id="headId">
     <meta charset="UTF-8">
-    <title>Guess the number game</title>
+    <title>Title content</title>
 </head>
 <body>
-    <h1>Welcome t ot the number game</h1>
-    <a th:href="play" th:text="Play"  href="http://www.google.com">Click to play</a>
-
+<div align="center">
+    <h1 id="welcome">Welcome to Guess the Number Game</h1>
+    <h3>
+        <a id="play-game"
+           href="play.html">
+            Click to Play
+        </a>
+    </h3>
+    <div id="footerId">Footer goes here</div>
+</div>
 </body>
 </html>
